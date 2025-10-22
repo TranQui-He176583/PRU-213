@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerColission : MonoBehaviour
 {
     [SerializeField] private GameControl gameControl;
+    [SerializeField] private AudioManager audioManager;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Player player = GetComponent<Player>();
@@ -14,6 +15,7 @@ public class PlayerColission : MonoBehaviour
         {
             gameControl.addExp();
             Destroy(collision.gameObject);
+            audioManager.PlayEnergySound();
         } else if (collision.CompareTag("Heal"))
         {
             player.heal(20);

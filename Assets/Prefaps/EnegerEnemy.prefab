@@ -206,7 +206,7 @@ MonoBehaviour:
   maxHp: 70
   hpBar: {fileID: 2948106419106457816}
   energyObject: {fileID: 4810104678789460963, guid: 8d2e8d9f5ddc581428ae2041a3a86e9b, type: 3}
-  energyObject: {fileID: 4810104678789460963, guid: 8d2e8d9f5ddc581428ae2041a3a86e9b, type: 3}
+  energyObject: {fileID: 6520658016850075996}
 --- !u!1001 &8790573113231139043
 PrefabInstance:
   m_ObjectHideFlags: 0

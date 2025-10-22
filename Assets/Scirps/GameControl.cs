@@ -12,6 +12,7 @@ public class GameControl : MonoBehaviour
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject gameOver;
     [SerializeField] private GameObject gamePause;
+    [SerializeField] private AudioManager audioManager;
     void Start()
     {
         currentExp = 0;
@@ -19,13 +20,13 @@ public class GameControl : MonoBehaviour
         UpdateBLvText();
         Debug.Log("ssss");
         MainMenu();
-        
+        audioManager.StopAudioGame();
     }
 
-    
+
     void Update()
     {
-        
+
     }
 
 
@@ -35,18 +36,18 @@ public class GameControl : MonoBehaviour
         updateEnergyBar();
         if (currentExp >= expToLevelUp)
         {
-           
+
             if (player != null)
             {
                 player.heal(20);
-                
+
                 Debug.Log($"Level up! Current Level: {currentLevel + 1}");
             }
             else
             {
                 Debug.LogError("Player reference not assigned! Drag Player GameObject to the 'Player' field in Inspector.");
             }
-            
+
             currentExp = 0;
             updateEnergyBar();
             currentLevel++;
@@ -87,12 +88,13 @@ public class GameControl : MonoBehaviour
         gameOver.SetActive(false);
         Time.timeScale = 0f;
     }
-    public void StartGame ()
+    public void StartGame()
     {
         gamePause.SetActive(false);
         mainMenu.SetActive(false);
         gameOver.SetActive(false);
         Time.timeScale = 1f;
+        audioManager.PlayDefaultAudio();
     }
     public void ResumeGame()
     {
