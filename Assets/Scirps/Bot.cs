@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 public abstract class Bot : MonoBehaviour
 {
@@ -14,6 +14,11 @@ public abstract class Bot : MonoBehaviour
         player = FindAnyObjectByType<Player>();
         currentHp = maxHp;
         updateHpBar();
+
+        // Khi enemy spawn, tự scale theo level hiện tại
+        GameControl gc = FindAnyObjectByType<GameControl>();
+        if (gc != null)
+            ScaleStats(gc.getCurrentLevel());
     }
 
     protected virtual void Update()
@@ -69,4 +74,18 @@ public abstract class Bot : MonoBehaviour
         }
         Destroy(gameObject);
     }
+
+
+    public virtual void ScaleStats(int level)
+    {
+        // Tùy chọn tỉ lệ tăng
+        float hpMultiplier = 1f + 0.2f * (level - 1);
+
+        maxHp *= hpMultiplier;
+        currentHp = maxHp;  // reset HP mỗi lần scale
+
+
+        updateHpBar();
+    }
+
 }

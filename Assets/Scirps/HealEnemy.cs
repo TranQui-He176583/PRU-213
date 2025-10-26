@@ -30,4 +30,12 @@ public class HealEnemy : Bot
         }
         base.Die();
     }
+
+    public override void ScaleStats(int level)
+    {
+        base.ScaleStats(level);
+        enterDame *= 1f + 0.2f * (level - 1);
+        stayDame *= 1f + 0.2f * (level - 1);
+    }
+
 }

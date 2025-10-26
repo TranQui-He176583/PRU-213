@@ -23,7 +23,15 @@ public class EnergyEnemy : Bot
         }
     }
 
-   
+    public override void ScaleStats(int level)
+    {
+        base.ScaleStats(level);
+        enterDame *= 1f + 0.2f * (level - 1);
+        stayDame *= 1f + 0.2f * (level - 1);
+    }
+
+
+
 
 
     //protected override void Die()

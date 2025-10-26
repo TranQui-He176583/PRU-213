@@ -34,13 +34,12 @@ public class GameControl : MonoBehaviour
     {
         currentExp += 1;
         updateEnergyBar();
+
         if (currentExp >= expToLevelUp)
         {
-
             if (player != null)
             {
                 player.heal(20);
-
                 Debug.Log($"Level up! Current Level: {currentLevel + 1}");
             }
             else
@@ -53,8 +52,28 @@ public class GameControl : MonoBehaviour
             currentLevel++;
             UpdateBLvText();
             expToLevelUp = Mathf.RoundToInt(expToLevelUp * 1.25f);
+
+            
+            ScaleAllEnemies();
         }
     }
+
+    private void ScaleAllEnemies()
+    {
+        Bot[] allEnemies = FindObjectsOfType<Bot>();
+        foreach (Bot enemy in allEnemies)
+        {
+            enemy.ScaleStats(currentLevel);
+        }
+    }
+
+    public int getCurrentLevel()
+    {
+        return currentLevel;
+    }
+
+
+
     private void updateEnergyBar()
     {
         float fillAmount = Mathf.Clamp01((float)currentExp / (float)expToLevelUp);

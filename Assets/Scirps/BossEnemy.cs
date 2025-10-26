@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+﻿using Unity.VisualScripting;
 using UnityEngine;
 
 public class BossEnemy : Bot
@@ -99,4 +99,22 @@ public class BossEnemy : Bot
         nextSkill = Time.time +skillCoolDown;
         randomSkill();
     }
+
+    public override void ScaleStats(int level)
+    {
+        base.ScaleStats(level);
+
+        // Tỉ lệ tăng theo cấp 
+        float damageMultiplier = 1f + 0.25f * (level - 1);
+        float cooldownMultiplier = Mathf.Max(0.8f, 1f - 0.05f * (level - 1)); // giảm 5% cooldown mỗi level, tối đa còn 80%
+
+        // Tăng chỉ số
+        enterDame *= damageMultiplier;
+        stayDame *= damageMultiplier;
+        skillCoolDown *= cooldownMultiplier;
+        hpHeal *= 1f + 0.15f * (level - 1); // mỗi cấp boss hồi được nhiều hơn
+
+        Debug.Log($"[BossEnemy] Scaled to level {level}. HP={maxHp}, Damage={enterDame}, Cooldown={skillCoolDown}");
+    }
+
 }

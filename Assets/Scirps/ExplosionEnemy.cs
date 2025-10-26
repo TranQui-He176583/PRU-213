@@ -24,5 +24,8 @@ public class ExplosionEnemy : Bot
             base.Die();
         }
     }
+
+    
+
 }
 

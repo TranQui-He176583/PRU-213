@@ -20,13 +20,13 @@ public class EnemySpam : MonoBehaviour
     
     private void Start()
     {
-        
+        // Spawn Normal Enemies
         for (int i = 0; i < normalEnemyData.Length; i++)
         {
             StartCoroutine(spawnEnemyCoroutine(normalEnemyData[i], i));
         }
-        
-        
+
+        // Spawn Special Enemies
         for (int i = 0; i < specialEnemyData.Length; i++)
         {
             StartCoroutine(spawnEnemyCoroutine(specialEnemyData[i], i));
