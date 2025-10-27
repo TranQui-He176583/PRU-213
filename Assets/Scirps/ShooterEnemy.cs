@@ -5,7 +5,7 @@ public class ShooterEnemy : Bot
     [SerializeField] private GameObject energyObject;
     [SerializeField] private GameObject bulletPrefabs;
     [SerializeField] private Transform firePoint;
-    [SerializeField] private float speedBullet = 7f;
+    [SerializeField] private float speedBullet = 3f;
     protected float enterDame = 5;
     protected float stayDame = 1;
     [SerializeField] private float bulletCoolDown = 1f;
